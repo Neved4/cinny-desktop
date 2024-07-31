@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
-        with: 
+        with:
           submodules: true
       - name: Get release
         id: get_release
@@ -69,7 +69,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
-        with: 
+        with:
           submodules: true
       - name: Get release
         id: get_release
@@ -126,7 +126,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
-        with: 
+        with:
           submodules: true
       - name: Get release
         id: get_release
@@ -172,6 +172,13 @@ jobs:
             src-tauri/target/universal-apple-darwin/release/bundle/dmg/Cinny_desktop-universal.dmg
             src-tauri/target/universal-apple-darwin/release/bundle/macos/Cinny_desktop-universal.app.tar.gz
             src-tauri/target/universal-apple-darwin/release/bundle/macos/Cinny_desktop-universal.app.tar.gz.sig
+      - name: Update Homebrew formula
+        uses: dawidd6/action-homebrew-bump-formula@v3
+        with:
+          token: ${{secrets.TOKEN}}
+          no_fork: true
+          tap: cinnyapp/cinny-desktop
+          formula: cinny
 
   # Upload release.json
   release-update:
